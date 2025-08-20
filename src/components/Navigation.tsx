@@ -205,130 +205,40 @@ export function Navigation() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <SheetHeader>
-                <SheetTitle className="flex items-center space-x-2">
-                  <BookOpen className="h-6 w-6 text-primary" />
-                  <span>Light and Truth</span>
-                </SheetTitle>
-              </SheetHeader>
-              <div className="grid gap-4 py-6">
-                <Link
-                  to="/"
-                  className="block px-2 py-1 text-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                
-                <div className="space-y-2">
-                  <p className="font-medium text-sm text-muted-foreground px-2">Blog</p>
-                  <div className="pl-4 space-y-1">
-                    <Link
-                      to="/category/messages"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Messages
-                    </Link>
-                    <Link
-                      to="/category/articles"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Articles
-                    </Link>
-                    <Link
-                      to="/category/sermon"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Sermon
-                    </Link>
-                  </div>
-                </div>
+<SheetContent side="right" className="w-[300px] sm:w-[400px]">
+  <SheetHeader>
+    <SheetTitle className="flex items-center space-x-2">
+      <BookOpen className="h-6 w-6 text-primary" />
+      <span>Light and Truth</span>
+    </SheetTitle>
+  </SheetHeader>
 
-                <Link
-                  to="/devotional"
-                  className="block px-2 py-1 text-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Devotional
-                </Link>
+  {/* Use flex column layout */}
+  <div className="flex flex-col justify-between h-full">
+    {/* Nav links */}
+    <div className="grid gap-4 py-6">
+      <Link to="/" className="block px-2 py-1 text-lg" onClick={() => setMobileMenuOpen(false)}>
+        Home
+      </Link>
+      {/* ... all your other nav + categories ... */}
+      <div className="px-2">
+        <NewsletterSubscribe />
+      </div>
+    </div>
 
-                <div className="space-y-2">
-                  <p className="font-medium text-sm text-muted-foreground px-2">Lifestyle</p>
-                  <div className="pl-4 space-y-1">
-                    <Link
-                      to="/category/health"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Health
-                    </Link>
-                    <Link
-                      to="/category/entertainment"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Entertainment
-                    </Link>
-                    <Link
-                      to="/category/politics"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Politics
-                    </Link>
-                    <Link
-                      to="/category/news"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      News
-                    </Link>
-                    <Link
-                      to="/category/stories"
-                      className="block px-2 py-1"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      Stories
-                    </Link>
-                  </div>
-                </div>
+    {/* Social Links pinned at bottom */}
+    <div className="flex items-center justify-center space-x-4 pt-4 border-t">
+      {socialLinks.map((social) => (
+        <Button key={social.name} variant="ghost" size="sm" asChild>
+          <a href={social.url} target="_blank" rel="noopener noreferrer">
+            <social.icon className="h-5 w-5" />
+          </a>
+        </Button>
+      ))}
+    </div>
+  </div>
+</SheetContent>
 
-                <Link
-                  to="/videos"
-                  className="block px-2 py-1 text-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Videos
-                </Link>
-
-                <Link
-                  to="/about"
-                  className="block px-2 py-1 text-lg"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  About
-                </Link>
-
-                <div className="px-2">
-                  <NewsletterSubscribe />
-                </div>
-
-                {/* Mobile Social Links */}
-                <div className="flex items-center justify-center space-x-4 pt-4 border-t">
-                  {socialLinks.map((social) => (
-                    <Button key={social.name} variant="ghost" size="sm" asChild>
-                      <a href={social.url} target="_blank" rel="noopener noreferrer">
-                        <social.icon className="h-5 w-5" />
-                      </a>
-                    </Button>
-                  ))}
-                </div>
-              </div>
-            </SheetContent>
           </Sheet>
         </div>
       </div>
