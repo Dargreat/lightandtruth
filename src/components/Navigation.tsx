@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ChevronDown } from "lucide-react";
+import { BookOpen, ChevronDown, Menu, X, Facebook, Youtube, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -10,12 +10,40 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { NewsletterSubscribe } from "./NewsletterSubscribe";
 
 export function Navigation() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/share/1BsW3d4wjX/?mibextid=wwXIfr",
+      icon: Facebook,
+    },
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@lightettruth?si=Rww0pm8DTBW598Lk",
+      icon: Youtube,
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/lightettruth",
+      icon: Instagram,
+    },
+  ];
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
+        {/* Desktop Navigation */}
         <div className="mr-4 hidden md:flex">
           <Link to="/" className="mr-6 flex items-center space-x-2">
             <BookOpen className="h-6 w-6 text-primary" />
@@ -149,6 +177,7 @@ export function Navigation() {
           </NavigationMenu>
         </div>
         
+        {/* Mobile Logo */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <div className="flex items-center space-x-2 md:hidden">
@@ -156,6 +185,151 @@ export function Navigation() {
               <span className="font-bold">Light and Truth</span>
             </div>
           </div>
+
+          {/* Desktop Social Links */}
+          <div className="hidden md:flex items-center space-x-2">
+            {socialLinks.map((social) => (
+              <Button key={social.name} variant="ghost" size="sm" asChild>
+                <a href={social.url} target="_blank" rel="noopener noreferrer">
+                  <social.icon className="h-4 w-4" />
+                </a>
+              </Button>
+            ))}
+          </div>
+
+          {/* Mobile Hamburger Menu */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="md:hidden">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader>
+                <SheetTitle className="flex items-center space-x-2">
+                  <BookOpen className="h-6 w-6 text-primary" />
+                  <span>Light and Truth</span>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="grid gap-4 py-6">
+                <Link
+                  to="/"
+                  className="block px-2 py-1 text-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                
+                <div className="space-y-2">
+                  <p className="font-medium text-sm text-muted-foreground px-2">Blog</p>
+                  <div className="pl-4 space-y-1">
+                    <Link
+                      to="/category/messages"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Messages
+                    </Link>
+                    <Link
+                      to="/category/articles"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Articles
+                    </Link>
+                    <Link
+                      to="/category/sermon"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sermon
+                    </Link>
+                  </div>
+                </div>
+
+                <Link
+                  to="/devotional"
+                  className="block px-2 py-1 text-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Devotional
+                </Link>
+
+                <div className="space-y-2">
+                  <p className="font-medium text-sm text-muted-foreground px-2">Lifestyle</p>
+                  <div className="pl-4 space-y-1">
+                    <Link
+                      to="/category/health"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Health
+                    </Link>
+                    <Link
+                      to="/category/entertainment"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Entertainment
+                    </Link>
+                    <Link
+                      to="/category/politics"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Politics
+                    </Link>
+                    <Link
+                      to="/category/news"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      News
+                    </Link>
+                    <Link
+                      to="/category/stories"
+                      className="block px-2 py-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Stories
+                    </Link>
+                  </div>
+                </div>
+
+                <Link
+                  to="/videos"
+                  className="block px-2 py-1 text-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Videos
+                </Link>
+
+                <Link
+                  to="/about"
+                  className="block px-2 py-1 text-lg"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+
+                <div className="px-2">
+                  <NewsletterSubscribe />
+                </div>
+
+                {/* Mobile Social Links */}
+                <div className="flex items-center justify-center space-x-4 pt-4 border-t">
+                  {socialLinks.map((social) => (
+                    <Button key={social.name} variant="ghost" size="sm" asChild>
+                      <a href={social.url} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="h-5 w-5" />
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
