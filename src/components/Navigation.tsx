@@ -53,21 +53,18 @@ export function Navigation() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 overflow-x-hidden">
-      <div className="container flex h-14 items-center">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center min-w-0">
         {/* Logo */}
-        <Link
-          to="/"
-          className="mr-6 flex items-center space-x-2 shrink-0"
-        >
-          <BookOpen className="h-6 w-6 text-primary" />
-          <span className="hidden font-bold sm:inline-block text-lg">
+        <Link to="/" className="mr-4 flex items-center space-x-2 min-w-0">
+          <BookOpen className="h-6 w-6 text-primary flex-shrink-0" />
+          <span className="hidden font-bold sm:inline-block text-lg truncate">
             Light and Truth
           </span>
         </Link>
 
-        {/* Desktop Navigation (centered) */}
-        <div className="hidden md:flex flex-1 justify-center">
+        {/* Desktop Navigation (centered, grows/shrinks) */}
+        <div className="hidden md:flex flex-1 justify-center min-w-0">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -91,7 +88,10 @@ export function Navigation() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/devotional" className="px-3 py-2 text-sm font-medium">
+                  <Link
+                    to="/devotional"
+                    className="px-3 py-2 text-sm font-medium"
+                  >
                     Devotional
                   </Link>
                 </NavigationMenuLink>
@@ -112,7 +112,10 @@ export function Navigation() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/videos" className="px-3 py-2 text-sm font-medium">
+                  <Link
+                    to="/videos"
+                    className="px-3 py-2 text-sm font-medium"
+                  >
                     Videos
                   </Link>
                 </NavigationMenuLink>
@@ -120,7 +123,10 @@ export function Navigation() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/about" className="px-3 py-2 text-sm font-medium">
+                  <Link
+                    to="/about"
+                    className="px-3 py-2 text-sm font-medium"
+                  >
                     About
                   </Link>
                 </NavigationMenuLink>
@@ -129,15 +135,15 @@ export function Navigation() {
           </NavigationMenu>
         </div>
 
-        {/* Desktop Social Links (right) */}
-        <div className="hidden md:flex items-center space-x-3 shrink-0">
+        {/* Desktop Social Links (right, shrinkable) */}
+        <div className="hidden md:flex items-center space-x-3 min-w-0">
           {socialLinks.map((social) => (
             <Button key={social.name} variant="ghost" size="sm" asChild>
               <a
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0"
+                className="flex-shrink-0"
               >
                 <social.icon className="h-6 w-6" />
               </a>
@@ -146,7 +152,7 @@ export function Navigation() {
         </div>
 
         {/* Mobile Hamburger (right) */}
-        <div className="md:hidden ml-auto shrink-0">
+        <div className="md:hidden ml-auto">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm">
@@ -299,13 +305,7 @@ export function Navigation() {
                 {/* Mobile Social Links */}
                 <div className="flex items-center justify-center space-x-4 pt-4 border-t">
                   {socialLinks.map((social) => (
-                    <Button
-                      key={social.name}
-                      variant="ghost"
-                      size="sm"
-                      asChild
-                      className="shrink-0"
-                    >
+                    <Button key={social.name} variant="ghost" size="sm" asChild>
                       <a
                         href={social.url}
                         target="_blank"
