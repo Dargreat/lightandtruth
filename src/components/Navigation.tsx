@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ChevronDown, Menu, X, Facebook, Youtube, Instagram } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  Menu,
+  Facebook,
+  Youtube,
+  Instagram,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   NavigationMenu,
@@ -47,48 +54,95 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+      <div className="container flex h-14 items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="mr-6 flex items-center space-x-2">
+          <BookOpen className="h-6 w-6 text-primary" />
+          <span className="hidden font-bold sm:inline-block text-lg">
+            Light and Truth
+          </span>
+        </Link>
+
         {/* Desktop Navigation */}
-        <div className="mr-4 hidden md:flex">
-          <Link to="/" className="mr-6 flex items-center space-x-2">
-            <BookOpen className="h-6 w-6 text-primary" />
-            <span className="hidden font-bold sm:inline-block text-lg">
-              Light and Truth
-            </span>
-          </Link>
-          
+        <div className="hidden md:flex flex-1 justify-center">
           <NavigationMenu>
             <NavigationMenuList>
-              {/* ... Desktop navigation items (unchanged) ... */}
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/" className="px-3 py-2 text-sm font-medium">
+                    Home
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Blog</NavigationMenuTrigger>
+                <NavigationMenuContent className="p-4">
+                  <div className="flex flex-col space-y-2">
+                    <Link to="/category/messages">Messages</Link>
+                    <Link to="/category/articles">Articles</Link>
+                    <Link to="/category/sermon">Sermon</Link>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/devotional" className="px-3 py-2 text-sm font-medium">
+                    Devotional
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Lifestyle</NavigationMenuTrigger>
+                <NavigationMenuContent className="p-4">
+                  <div className="flex flex-col space-y-2">
+                    <Link to="/category/health">Health</Link>
+                    <Link to="/category/entertainment">Entertainment</Link>
+                    <Link to="/category/politics">Politics</Link>
+                    <Link to="/category/news">News</Link>
+                    <Link to="/category/stories">Stories</Link>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/videos" className="px-3 py-2 text-sm font-medium">
+                    Videos
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/about" className="px-3 py-2 text-sm font-medium">
+                    About
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        
-        {/* Mobile Logo */}
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            <div className="flex items-center space-x-2 md:hidden">
-              <BookOpen className="h-6 w-6 text-primary" />
-              <span className="font-bold">Light and Truth</span>
-            </div>
-          </div>
 
-          {/* Desktop Social Links */}
-          <div className="hidden md:flex items-center space-x-2">
-            {socialLinks.map((social) => (
-              <Button key={social.name} variant="ghost" size="sm" asChild>
-                <a href={social.url} target="_blank" rel="noopener noreferrer">
-                  <social.icon className="h-4 w-4" />
-                </a>
-              </Button>
-            ))}
-          </div>
+        {/* Desktop Social Links */}
+        <div className="hidden md:flex items-center space-x-3">
+          {socialLinks.map((social) => (
+            <Button key={social.name} variant="ghost" size="sm" asChild>
+              <a href={social.url} target="_blank" rel="noopener noreferrer">
+                <social.icon className="h-6 w-6" /> {/* bigger icons */}
+              </a>
+            </Button>
+          ))}
+        </div>
 
-          {/* Mobile Hamburger Menu */}
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="md:hidden">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="sm">
+                <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
@@ -103,73 +157,129 @@ export function Navigation() {
               <div className="flex flex-col justify-between h-full">
                 {/* Nav links */}
                 <div className="grid gap-4 py-6">
-                  <Link to="/" className="block px-2 py-1 text-lg" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    to="/"
+                    className="block px-2 py-1 text-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Home
                   </Link>
 
                   {/* Blog Dropdown */}
                   <div>
-                    <button 
+                    <button
                       className="flex items-center justify-between w-full px-2 py-1 text-lg"
-                      onClick={() => toggleDropdown('blog')}
+                      onClick={() => toggleDropdown("blog")}
                     >
                       Blog
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'blog' ? 'rotate-180' : ''}`} />
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          openDropdown === "blog" ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
-                    {openDropdown === 'blog' && (
+                    {openDropdown === "blog" && (
                       <div className="pl-6 mt-2 space-y-2">
-                        <Link to="/category/messages" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/messages"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Messages
                         </Link>
-                        <Link to="/category/articles" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/articles"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Articles
                         </Link>
-                        <Link to="/category/sermon" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/sermon"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Sermon
                         </Link>
                       </div>
                     )}
                   </div>
 
-                  <Link to="/devotional" className="block px-2 py-1 text-lg" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    to="/devotional"
+                    className="block px-2 py-1 text-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Devotional
                   </Link>
 
                   {/* Lifestyle Dropdown */}
                   <div>
-                    <button 
+                    <button
                       className="flex items-center justify-between w-full px-2 py-1 text-lg"
-                      onClick={() => toggleDropdown('lifestyle')}
+                      onClick={() => toggleDropdown("lifestyle")}
                     >
                       Lifestyle
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === 'lifestyle' ? 'rotate-180' : ''}`} />
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform ${
+                          openDropdown === "lifestyle" ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
-                    {openDropdown === 'lifestyle' && (
+                    {openDropdown === "lifestyle" && (
                       <div className="pl-6 mt-2 space-y-2">
-                        <Link to="/category/health" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/health"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Health
                         </Link>
-                        <Link to="/category/entertainment" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/entertainment"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Entertainment
                         </Link>
-                        <Link to="/category/politics" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/politics"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Politics
                         </Link>
-                        <Link to="/category/news" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/news"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           News
                         </Link>
-                        <Link to="/category/stories" className="block py-1" onClick={() => setMobileMenuOpen(false)}>
+                        <Link
+                          to="/category/stories"
+                          className="block py-1"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
                           Stories
                         </Link>
                       </div>
                     )}
                   </div>
 
-                  <Link to="/videos" className="block px-2 py-1 text-lg" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    to="/videos"
+                    className="block px-2 py-1 text-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Videos
                   </Link>
 
-                  <Link to="/about" className="block px-2 py-1 text-lg" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    to="/about"
+                    className="block px-2 py-1 text-lg"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     About
                   </Link>
 
@@ -178,12 +288,16 @@ export function Navigation() {
                   </div>
                 </div>
 
-                {/* Social Links */}
+                {/* Mobile Social Links */}
                 <div className="flex items-center justify-center space-x-4 pt-4 border-t">
                   {socialLinks.map((social) => (
                     <Button key={social.name} variant="ghost" size="sm" asChild>
-                      <a href={social.url} target="_blank" rel="noopener noreferrer">
-                        <social.icon className="h-5 w-5" />
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <social.icon className="h-7 w-7" /> {/* bigger icons */}
                       </a>
                     </Button>
                   ))}
