@@ -53,7 +53,7 @@ export function Navigation() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 overflow-x-hidden">
       <div className="container flex h-14 items-center">
         {/* Logo */}
         <Link
@@ -133,15 +133,20 @@ export function Navigation() {
         <div className="hidden md:flex items-center space-x-3 shrink-0">
           {socialLinks.map((social) => (
             <Button key={social.name} variant="ghost" size="sm" asChild>
-              <a href={social.url} target="_blank" rel="noopener noreferrer">
-                <social.icon className="h-6 w-6" /> {/* bigger icons */}
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0"
+              >
+                <social.icon className="h-6 w-6" />
               </a>
             </Button>
           ))}
         </div>
 
         {/* Mobile Hamburger (right) */}
-        <div className="md:hidden ml-auto">
+        <div className="md:hidden ml-auto shrink-0">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm">
@@ -294,13 +299,19 @@ export function Navigation() {
                 {/* Mobile Social Links */}
                 <div className="flex items-center justify-center space-x-4 pt-4 border-t">
                   {socialLinks.map((social) => (
-                    <Button key={social.name} variant="ghost" size="sm" asChild>
+                    <Button
+                      key={social.name}
+                      variant="ghost"
+                      size="sm"
+                      asChild
+                      className="shrink-0"
+                    >
                       <a
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <social.icon className="h-7 w-7" /> {/* bigger icons */}
+                        <social.icon className="h-7 w-7" />
                       </a>
                     </Button>
                   ))}
