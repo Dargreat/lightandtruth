@@ -63,8 +63,8 @@ export function Navigation() {
           </span>
         </Link>
 
-        {/* Desktop Navigation (centered, grows/shrinks) */}
-        <div className="hidden md:flex flex-1 justify-center min-w-0">
+        {/* Desktop Navigation (only lg+) */}
+        <div className="hidden lg:flex flex-1 justify-center min-w-0">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -112,10 +112,7 @@ export function Navigation() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link
-                    to="/videos"
-                    className="px-3 py-2 text-sm font-medium"
-                  >
+                  <Link to="/videos" className="px-3 py-2 text-sm font-medium">
                     Videos
                   </Link>
                 </NavigationMenuLink>
@@ -123,10 +120,7 @@ export function Navigation() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link
-                    to="/about"
-                    className="px-3 py-2 text-sm font-medium"
-                  >
+                  <Link to="/about" className="px-3 py-2 text-sm font-medium">
                     About
                   </Link>
                 </NavigationMenuLink>
@@ -135,8 +129,8 @@ export function Navigation() {
           </NavigationMenu>
         </div>
 
-        {/* Desktop Social Links (right, shrinkable) */}
-        <div className="hidden md:flex items-center space-x-3 min-w-0">
+        {/* Desktop Social Links (only lg+) */}
+        <div className="hidden lg:flex items-center space-x-3 min-w-0">
           {socialLinks.map((social) => (
             <Button key={social.name} variant="ghost" size="sm" asChild>
               <a
@@ -151,8 +145,8 @@ export function Navigation() {
           ))}
         </div>
 
-        {/* Mobile Hamburger (right) */}
-        <div className="md:hidden ml-auto">
+        {/* Mobile/Tablet Hamburger (below lg) */}
+        <div className="lg:hidden ml-auto">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm">
