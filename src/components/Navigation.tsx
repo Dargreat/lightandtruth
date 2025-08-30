@@ -54,16 +54,19 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between">
+      <div className="container flex h-14 items-center">
         {/* Logo */}
-        <Link to="/" className="mr-6 flex items-center space-x-2">
+        <Link
+          to="/"
+          className="mr-6 flex items-center space-x-2 shrink-0"
+        >
           <BookOpen className="h-6 w-6 text-primary" />
           <span className="hidden font-bold sm:inline-block text-lg">
             Light and Truth
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (centered) */}
         <div className="hidden md:flex flex-1 justify-center">
           <NavigationMenu>
             <NavigationMenuList>
@@ -126,8 +129,8 @@ export function Navigation() {
           </NavigationMenu>
         </div>
 
-        {/* Desktop Social Links */}
-        <div className="hidden md:flex items-center space-x-3">
+        {/* Desktop Social Links (right) */}
+        <div className="hidden md:flex items-center space-x-3 shrink-0">
           {socialLinks.map((social) => (
             <Button key={social.name} variant="ghost" size="sm" asChild>
               <a href={social.url} target="_blank" rel="noopener noreferrer">
@@ -137,8 +140,8 @@ export function Navigation() {
           ))}
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
+        {/* Mobile Hamburger (right) */}
+        <div className="md:hidden ml-auto">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm">
