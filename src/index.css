@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+Light and Truth Christian Blog Design System
+Sky blue + white editorial palette — no gradients
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 205 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 30% 96%;
+    --secondary-foreground: 215 25% 20%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 46%;
+
+    --accent: 205 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 20% 92%;
+    --input: 210 20% 90%;
+    --ring: 205 85% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 215 25% 20%;
+    --sidebar-primary: 205 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 30% 95%;
+    --sidebar-accent-foreground: 215 25% 20%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 205 85% 50%;
+  }
+
+  .dark {
+    --background: 215 30% 8%;
+    --foreground: 210 40% 95%;
+
+    --card: 215 30% 12%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 215 30% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 205 85% 55%;
+    --primary-foreground: 215 30% 8%;
+
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 210 40% 95%;
+
+    --muted: 215 25% 18%;
+    --muted-foreground: 210 15% 60%;
+
+    --accent: 205 70% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 95%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 205 85% 55%;
+
+    --sidebar-background: 215 30% 10%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 205 85% 55%;
+    --sidebar-primary-foreground: 215 30% 8%;
+    --sidebar-accent: 215 25% 16%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 215 25% 20%;
+    --sidebar-ring: 205 85% 55%;
+  }
+}
+
+/* Utility classes for text truncation */
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Animation delays */
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+
+/* Story link underline animation */
+.story-link {
+  @apply relative inline-block;
+}
+.story-link::after {
+  content: '';
+  @apply absolute w-full h-0.5 bottom-0 left-0 bg-primary origin-bottom-right transition-transform duration-300 scale-x-0;
+}
+.story-link:hover::after {
+  @apply origin-bottom-left scale-x-100;
+}
+
+/* Prose styling for article content */
+.prose-article {
+  @apply text-foreground leading-relaxed;
+}
+.prose-article p {
+  @apply mb-5 text-base md:text-lg;
+}
+.prose-article h2 {
+  @apply text-2xl font-bold mt-10 mb-4;
+}
+.prose-article h3 {
+  @apply text-xl font-semibold mt-8 mb-3;
+}
+.prose-article blockquote {
+  @apply border-l-4 border-primary pl-6 italic my-6 text-muted-foreground;
+}
+.prose-article ul, .prose-article ol {
+  @apply pl-6 mb-5 space-y-2;
+}
+.prose-article a {
+  @apply text-primary underline;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+}
