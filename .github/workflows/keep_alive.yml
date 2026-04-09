@@ -1,0 +1,17 @@
+name: Wake Up Supabase
+
+on:
+  schedule:
+    # Runs at 00:00 every Monday
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # This button lets us test it manually!
+
+jobs:
+  ping_db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit the Database
+        run: |
+          curl -i -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/Keep_alive?select=*" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
