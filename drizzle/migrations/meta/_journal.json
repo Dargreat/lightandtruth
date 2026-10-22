@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791697935823,
+      "tag": "0000_create_posts_and_comments",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791697942852,
+      "tag": "0001_add_image_url_to_posts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791697954733,
+      "tag": "0002_create_bible_verses_and_video_url",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791697976155,
+      "tag": "0003_videos_storage_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791697987377,
+      "tag": "0004_create_categories_subscribers_videos",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791697993602,
+      "tag": "0005_fix_function_search_path",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791698010339,
+      "tag": "0006_create_devotionals_and_grants",
+      "breakpoints": true
+    }
+  ]
+}

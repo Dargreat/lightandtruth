@@ -1,0 +1,22 @@
+name: Wake Up Supabase
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping_db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hard Heartbeat
+        run: |
+          curl -X DELETE "${{ secrets.SUPABASE_URL }}/rest/v1/Keep_alive?id=gt.0" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+          
+          curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/Keep_alive" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+          -H "Content-Type: application/json" \
+          -d "{\"created_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}"
